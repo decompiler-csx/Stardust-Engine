@@ -1,0 +1,57 @@
+{
+	"storyName": "L is real",
+	"hideFreeplay": false,
+	"weekBackground": "stage",
+	"weekBefore": "tutorial",
+	"freeplayColor": [
+		146,
+		113,
+		253
+	],
+	"startUnlocked": true,
+	"weekCharacters": [
+		"l",
+		"bf",
+		"gf"
+	],
+	"songs": [
+		[
+			"hell",
+			"bf",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"hell",
+			"bf",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"hell",
+			"bf",
+			[
+				146,
+				113,
+				253
+			]
+		],
+		[
+			"hell",
+			"dad",
+			[
+				146,
+				113,
+				253
+			]
+		]
+	],
+	"hideStoryMode": true,
+	"weekName": "hahae"
+}
