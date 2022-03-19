@@ -90,7 +90,7 @@ class CreditsState extends MusicBeatState
 			['KadeDev',				'kade',				'Kade Engine Creator\n(some code is from there)\n[NON-AFFILIATED]',		'https://twitter.com/kade0912',										'4F6441'],
 			['Leather128',			'leather',			'Leather Engine Creator\n(some code is from there)\n[NON-AFFILIATED]',	'https://www.youtube.com/channel/UCbCtO-ghipZessWaOBx8u1g',			'01A1FF'],
 			['GitHub Contributors',	'github',			'Pull Requests to Psych Engine\n[NON-AFFILIATED]',						'https://github.com/ShadowMario/FNF-PsychEngine/pulls',				'546782'],
-			['TylerTehNub',         'tylol',            'Extra Shit + Other Stuff',                                             'https://twitter.com/ty_1991',                                      '01A1FF'],
+			['TylerTehNub',         'tylol',            'Main coder + Bug fixes',                                             'https://twitter.com/ty_1991',                                      '01A1FF'],
 			[''],
 			['Psych Engine Team'],
 			['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',						'https://twitter.com/Shadow_Mario_',	'444444'],
