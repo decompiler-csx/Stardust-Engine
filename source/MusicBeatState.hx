@@ -1,23 +1,9 @@
 package;
 
-import Conductor.BPMChangeEvent;
 import flixel.FlxG;
 import flixel.addons.ui.FlxUIState;
-import flixel.math.FlxRect;
-import flixel.util.FlxTimer;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import flixel.FlxSprite;
-import flixel.util.FlxColor;
-import flixel.util.FlxGradient;
 import flixel.FlxState;
-import flixel.FlxBasic;
-#if android
-import flixel.input.actions.FlxActionInput;
-import android.AndroidControls.AndroidControls;
-import android.FlxVirtualPad;
-#end
 
 class MusicBeatState extends FlxUIState
 {
@@ -32,82 +18,18 @@ class MusicBeatState extends FlxUIState
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
 
-	#if android
-	var _virtualpad:FlxVirtualPad;
-	var androidc:AndroidControls;
-	var trackedinputsUI:Array<FlxActionInput> = [];
-	var trackedinputsNOTES:Array<FlxActionInput> = [];
-	#end
-	
-	#if android
-	public function addVirtualPad(?DPad:FlxDPadMode, ?Action:FlxActionMode) {
-		_virtualpad = new FlxVirtualPad(DPad, Action);
-		_virtualpad.alpha = 0.75;
-		add(_virtualpad);
-		controls.setVirtualPadUI(_virtualpad, DPad, Action);
-		trackedinputsUI = controls.trackedinputsUI;
-		controls.trackedinputsUI = [];
-	}
-	#end
-
-	#if android
-	public function addAndroidControls() {
-        androidc = new AndroidControls();
-
-		switch (androidc.mode)
-		{
-			case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
-				controls.setVirtualPadNOTES(androidc.vpad, FULL, NONE);
-			case DUO:
-				controls.setVirtualPadNOTES(androidc.vpad, DUO, NONE);
-			case HITBOX:
-				controls.setHitBox(androidc.hbox);
-			default:
-		}
-
-		trackedinputsNOTES = controls.trackedinputsNOTES;
-		controls.trackedinputsNOTES = [];
-
-		var camcontrol = new flixel.FlxCamera();
-		FlxG.cameras.add(camcontrol);
-		camcontrol.bgColor.alpha = 0;
-		androidc.cameras = [camcontrol];
-
-		androidc.visible = false;
-
-		add(androidc);
-	}
-	#end
-
-	#if android
-        public function addPadCamera() {
-		var camcontrol = new flixel.FlxCamera();
-		FlxG.cameras.add(camcontrol);
-		camcontrol.bgColor.alpha = 0;
-		_virtualpad.cameras = [camcontrol];
-	}
-	#end
-	
-	override function destroy() {
-		#if android
-		controls.removeFlxInput(trackedinputsUI);
-		controls.removeFlxInput(trackedinputsNOTES);	
-		#end	
-		
-		super.destroy();
-	}
-
 	override function create() {
 		var skip:Bool = FlxTransitionableState.skipNextTransOut;
 		super.create();
 
-		if(!skip) {
+		// Custom made Trans out
+		if (!skip) {
 			openSubState(new CustomFadeTransition(0.7, true));
 		}
 		FlxTransitionableState.skipNextTransOut = false;
 	}
 	
-	#if (VIDEOS_ALLOWED && windows)
+	#if (VIDEOS_ALLOWED && desktop)
 	override public function onFocus():Void
 	{
 		FlxVideo.onFocus();
@@ -123,16 +45,15 @@ class MusicBeatState extends FlxUIState
 
 	override function update(elapsed:Float)
 	{
-		//everyStep();
 		var oldStep:Int = curStep;
 
 		updateCurStep();
 		updateBeat();
 
-		if (oldStep != curStep && curStep > 0)
+		if (oldStep != curStep && curStep >= 0)
 			stepHit();
 
-		if(FlxG.save.data != null) FlxG.save.data.fullscreen = FlxG.fullscreen;
+		if (FlxG.save.data != null) FlxG.save.data.fullscreen = FlxG.fullscreen;
 
 		super.update(elapsed);
 	}
@@ -144,15 +65,19 @@ class MusicBeatState extends FlxUIState
 
 	private function updateCurStep():Void
 	{
-		var lastChange:BPMChangeEvent = {
+		var lastChange:Dynamic = {
 			stepTime: 0,
-			songTime: 0,
-			bpm: 0
+			songTime: 0.0
 		}
 		for (i in 0...Conductor.bpmChangeMap.length)
 		{
 			if (Conductor.songPosition >= Conductor.bpmChangeMap[i].songTime)
 				lastChange = Conductor.bpmChangeMap[i];
+		}
+		for (i in 0...Conductor.signatureChangeMap.length)
+		{
+			if (Conductor.songPosition >= Conductor.signatureChangeMap[i].songTime && Conductor.signatureChangeMap[i].songTime > lastChange.songTime)
+				lastChange = Conductor.signatureChangeMap[i];
 		}
 
 		curStep = lastChange.stepTime + Math.floor(((Conductor.songPosition - ClientPrefs.noteOffset) - lastChange.songTime) / Conductor.stepCrochet);
@@ -162,18 +87,16 @@ class MusicBeatState extends FlxUIState
 		// Custom made Trans in
 		var curState:Dynamic = FlxG.state;
 		var leState:MusicBeatState = curState;
-		if(!FlxTransitionableState.skipNextTransIn) {
+		if (!FlxTransitionableState.skipNextTransIn) {
 			leState.openSubState(new CustomFadeTransition(0.6, false));
-			if(nextState == FlxG.state) {
+			if (nextState == FlxG.state) {
 				CustomFadeTransition.finishCallback = function() {
 					FlxG.resetState();
 				};
-				//trace('resetted');
 			} else {
 				CustomFadeTransition.finishCallback = function() {
 					FlxG.switchState(nextState);
 				};
-				//trace('changed state');
 			}
 			return;
 		}

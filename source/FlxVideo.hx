@@ -3,15 +3,15 @@ import openfl.net.NetConnection;
 import openfl.net.NetStream;
 import openfl.events.NetStatusEvent;
 import openfl.media.Video;
-#elseif android
-import extension.webview.WebView;
-import android.AndroidTools;
 #else
 import openfl.events.Event;
 import vlc.VlcBitmap;
 #end
 import flixel.FlxBasic;
 import flixel.FlxG;
+import openfl.text.TextField;
+import openfl.text.TextFormat;
+import flixel.util.FlxColor;
 
 class FlxVideo extends FlxBasic {
 	#if VIDEOS_ALLOWED
@@ -19,6 +19,7 @@ class FlxVideo extends FlxBasic {
 	
 	#if desktop
 	public static var vlcBitmap:VlcBitmap;
+	public static var skipText:TextField;
 	#end
 
 	public function new(name:String) {
@@ -40,22 +41,14 @@ class FlxVideo extends FlxBasic {
 			}
 		};
 		netConnect.addEventListener(NetStatusEvent.NET_STATUS, function(event:NetStatusEvent) {
-			if(event.info.code == "NetStream.Play.Complete") {
+			if (event.info.code == "NetStream.Play.Complete") {
 				netStream.dispose();
-				if(FlxG.game.contains(player)) FlxG.game.removeChild(player);
+				if (FlxG.game.contains(player)) FlxG.game.removeChild(player);
 
-				if(finishCallback != null) finishCallback();
+				if (finishCallback != null) finishCallback();
 			}
 		});
 		netStream.play(name);
-
-	        #elseif android
-                WebView.playVideo(AndroidTools.getFileUrl(name), true);
-                WebView.onComplete = function(){
-		        if (finishCallback != null){
-			        finishCallback();
-		        }
-                }
 
 		#elseif desktop
 		// by Polybius, check out PolyEngine! https://github.com/polybiusproxy/PolyEngine
@@ -75,6 +68,16 @@ class FlxVideo extends FlxBasic {
 
 		FlxG.addChildBelowMouse(vlcBitmap);
 		vlcBitmap.play(checkFile(name));
+
+		skipText = new TextField();
+		skipText.text = "Hold ANY to Skip Cutscene";
+		skipText.defaultTextFormat = new TextFormat('_sans', 32, FlxColor.WHITE, false, false, false, "", "", CENTER, 0, 0, 0, 0); //hello mario
+		skipText.alpha = 0;
+		skipText.width = FlxG.width;
+		skipText.y += 600;
+		skipText.selectable = false;
+		skipText.mouseEnabled = false;
+		FlxG.addChildBelowMouse(skipText);
 		#end
 	}
 
@@ -82,7 +85,7 @@ class FlxVideo extends FlxBasic {
 	function checkFile(fileName:String):String
 	{
 		var pDir = "";
-		var appDir = "file:///" + Sys.getCwd() + "/";
+		var appDir = 'file:///${Sys.getCwd()}/';
 
 		if (fileName.indexOf(":") == -1) // Not a path
 			pDir = appDir;
@@ -93,13 +96,13 @@ class FlxVideo extends FlxBasic {
 	}
 	
 	public static function onFocus() {
-		if(vlcBitmap != null) {
+		if (vlcBitmap != null) {
 			vlcBitmap.resume();
 		}
 	}
 	
 	public static function onFocusLost() {
-		if(vlcBitmap != null) {
+		if (vlcBitmap != null) {
 			vlcBitmap.pause();
 		}
 	}
@@ -108,7 +111,7 @@ class FlxVideo extends FlxBasic {
 	{
 		// shitty volume fix
 		vlcBitmap.volume = 0;
-		if(!FlxG.sound.muted && FlxG.sound.volume > 0.01) { //Kind of fixes the volume being too low when you decrease it
+		if (!FlxG.sound.muted && FlxG.sound.volume > 0.01) { //Kind of fixes the volume being too low when you decrease it
 			vlcBitmap.volume = FlxG.sound.volume * 0.5 + 0.5;
 		}
 	}
@@ -123,6 +126,11 @@ class FlxVideo extends FlxBasic {
 		if (FlxG.game.contains(vlcBitmap))
 		{
 			FlxG.game.removeChild(vlcBitmap);
+		}
+
+		if(FlxG.game.contains(skipText))
+		{
+			FlxG.game.removeChild(skipText);
 		}
 
 		if (finishCallback != null)
