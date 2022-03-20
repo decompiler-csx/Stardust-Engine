@@ -42,7 +42,7 @@ class DiscordClient
 	static function onReady()
 	{
 		DiscordRpc.presence({
-			details: "In the Menus",
+			details: "Menu State.hx",
 			state: null,
 			largeImageKey: 'icon',
 			largeImageText: "Bruh Engine Reborn"
