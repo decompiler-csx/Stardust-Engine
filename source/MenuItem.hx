@@ -2,7 +2,6 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 
@@ -14,8 +13,7 @@ class MenuItem extends FlxSprite
 	public function new(x:Float, y:Float, weekName:String = '')
 	{
 		super(x, y);
-		loadGraphic(Paths.image('storymenu/' + weekName));
-		//trace('Test added: ' + WeekData.getWeekNumber(weekNum) + ' (' + weekNum + ')');
+		loadGraphic(Paths.image('storymenu/$weekName'));
 		antialiasing = ClientPrefs.globalAntialiasing;
 	}
 
@@ -36,11 +34,12 @@ class MenuItem extends FlxSprite
 	{
 		super.update(elapsed);
 		y = FlxMath.lerp(y, (targetY * 120) + 480, CoolUtil.boundTo(elapsed * 10.2, 0, 1));
+		fakeFramerate = Math.round((1 / elapsed) / 10);
 
 		if (isFlashing)
 			flashingInt += 1;
 
-		if (flashingInt % fakeFramerate >= Math.floor(fakeFramerate / 2))
+		if (isFlashing && flashingInt % fakeFramerate >= Math.floor(fakeFramerate / 2))
 			color = 0xFF33ffff;
 		else
 			color = FlxColor.WHITE;
