@@ -27,7 +27,7 @@ class MainMenuState extends MusicBeatState
 {
 
 	//vesion txt 1st lines
-	public static var bruhEngineVersion:String = '0.5.2h'; //This is also used for Discord RPC
+	public static var bruhEngineVersion:String = '3.0'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
@@ -53,7 +53,7 @@ class MainMenuState extends MusicBeatState
 
 
 
-	var gfDance:FlxSprite;      //to put the gf on the menu mme
+	var gfDance:FlxSprite;      //to put the gf on the menu
 	var danceLeft:Bool = false;
 
 
