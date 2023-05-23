@@ -12,7 +12,7 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.tweens.FlxTween;
-import flixel.sound.FlxSound;
+import flixel.system.FlxSound;
 import flash.media.Sound;
 #if MODS_ALLOWED
 import sys.io.File;
