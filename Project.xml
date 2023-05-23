@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Bruh Engine Reborn" file="BER" packageName="com.tylertehnub.bruhengine" package="com.tylerrtehnub.bruhengine" main="Main" version="0.2.7" company="TylerTehNub" />
+	<app title="Star Engine" file="SE" packageName="com.tydev.starengine" package="com.tydev.starengine" main="Main" version="0.2.7" company="TyDev" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
