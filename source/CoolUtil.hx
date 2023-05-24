@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import openfl.utils.Assets;
+import flixel.system.FlxSound;
 #if MODS_ALLOWED
 import sys.io.File;
 import sys.FileSystem;
