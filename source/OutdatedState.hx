@@ -19,8 +19,8 @@ class OutdatedState extends MusicBeatState
 		add(bg);
 
 		warnText = new FlxText(0, 0, FlxG.width,
-			'Sup nerd, looks like you\'re running an   \n
-			outdated version of Bruh Engine Reborn (${MainMenuState.bruhEngineVersion}),\n
+			'Sup, looks like you\'re running an   \n
+			outdated version of Star Engine (${MainMenuState.StarEngineVersion}),\n
 			please update to ${TitleState.updateVersion}!\n
 			\n
 			Thank you for using the Engine!',
