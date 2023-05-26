@@ -69,12 +69,12 @@ class TitleState extends MusicBeatState
 		#if CHECK_FOR_UPDATES
 		if (!closedState) {
 			trace('checking for update');
-			var http = new Http("https://raw.githubusercontent.com/Starmapo/FNF-PsychEngine-Extra/main/gitVersion.txt");
+			var http = new Http("https://raw.githubusercontent.com/TyDevX/Stardust-Engine/main/gitVersion.txt");
 			
 			http.onData = function (data:String)
 			{
 				updateVersion = data.split('\n')[0].trim();
-				var curVersion:String = MainMenuState.psychEngineExtraVersion.trim();
+				var curVersion:String = MainMenuState.stardustEngineVersion.trim();
 				trace('version online: $updateVersion, your version: $curVersion');
 				if (updateVersion != curVersion) {
 					trace('versions arent matching!');
@@ -379,15 +379,13 @@ class TitleState extends MusicBeatState
 			{
 				case 1:
 					#if PSYCH_WATERMARKS
-					createCoolText(['Psych Engine by'], 15);
+					createCoolText(['Stardust Engine by'], 15);
 					#else
 					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
 					#end
 				case 3:
 					#if PSYCH_WATERMARKS
-					addMoreText('Shadow Mario', 15);
-					addMoreText('RiverOaken', 15);
-					addMoreText('shubs', 15);
+					addMoreText('TyDev', 15);
 					#else
 					addMoreText('present');
 					#end
@@ -412,11 +410,11 @@ class TitleState extends MusicBeatState
 				case 12:
 					deleteCoolText();
 				case 13:
-					addMoreText('Friday');
+					addMoreText('FNF');
 				case 14:
-					addMoreText('Night');
+					addMoreText('Stardust');
 				case 15:
-					addMoreText('Funkin');
+					addMoreText('Engine');
 				case 16:
 					skipIntro();
 			}
