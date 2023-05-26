@@ -1,13 +1,13 @@
-### Star Engine
+### Stardust Engine
 
-* The official repo for Bruh Engine Reborn's Revival, which is now known as Star Engine!
+* The official repo for Bruh Engine Reborn's Revival, which is now known as Stardust Engine!
 
 ## Build Installation Stuff:
 You must have [the most up-to-date version of Haxe](https://haxe.org/download/), seriously, stop using 4.1.5, it misses some stuff.
 
 open up a Command Prompt/PowerShell or Terminal, type `haxelib install hmm`
 
-after it finishes, simply type `haxelib run hmm install` in order to install all the needed libraries for *Star Engine!*
+after it finishes, simply type `haxelib run hmm install` in order to install all the needed libraries for *Stardust Engine!*
 
 ## Customization:
 
@@ -19,7 +19,7 @@ to start you off, disabling Videos should be simple, simply Delete the line `"VI
 
 same goes for *Lua Scripts*, comment out or delete the line with `LUA_ALLOWED`, this and other customization options are all available within the `Project.xml` file
 
-## Star Engine Credits:
+## Stardust Engine Credits:
 
 * TyDev - Programmer
 

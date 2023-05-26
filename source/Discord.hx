@@ -81,7 +81,7 @@ class DiscordClient
 			details: details,
 			state: state,
 			largeImageKey: 'icon',
-			largeImageText: 'Engine Version: ${MainMenuState.StarEngineVersion}',
+			largeImageText: 'Engine Version: ${MainMenuState.StardustEngineVersion}',
 			smallImageKey : smallImageKey,
 			// Obtained times are in milliseconds so they are divided so Discord can use it
 			startTimestamp : Std.int(startTimestamp / 1000),

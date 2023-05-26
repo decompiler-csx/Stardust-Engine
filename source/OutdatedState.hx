@@ -20,7 +20,7 @@ class OutdatedState extends MusicBeatState
 
 		warnText = new FlxText(0, 0, FlxG.width,
 			'Sup, looks like you\'re running an   \n
-			outdated version of Star Engine (${MainMenuState.StarEngineVersion}),\n
+			outdated version of Star Engine (${MainMenuState.StardustEngineVersion}),\n
 			please update to ${TitleState.updateVersion}!\n
 			\n
 			Thank you for using the Engine!',
