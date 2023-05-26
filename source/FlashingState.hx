@@ -26,7 +26,8 @@ class FlashingState extends MusicBeatState
 			This engine contains some flashing lights!\n
 			Press ENTER to disable them now or go to Options Menu.\n
 			Press ESCAPE to ignore this message.\n
-			You've been warned!",
+			You've been warned! \n
+			Also press 7 for mods menu lolz.",
 			32);
 		warnText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
 		warnText.screenCenter(Y);
