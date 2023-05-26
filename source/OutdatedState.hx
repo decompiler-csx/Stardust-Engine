@@ -19,8 +19,8 @@ class OutdatedState extends MusicBeatState
 		add(bg);
 
 		warnText = new FlxText(0, 0, FlxG.width,
-			'Sup, looks like you\'re running an   \n
-			outdated version of Star Engine (${MainMenuState.StardustEngineVersion}),\n
+			'Sup nerd, looks like you\'re running an   \n
+			outdated version of Bruh Engine Reborn (${MainMenuState.stardustEngineVersion}),\n
 			please update to ${TitleState.updateVersion}!\n
 			\n
 			Thank you for using the Engine!',
@@ -35,7 +35,7 @@ class OutdatedState extends MusicBeatState
 		if (!leftState) {
 			if (controls.ACCEPT || controls.BACK) {
 				leftState = true;
-				CoolUtil.browserLoad("https://github.com/Starmapo/FNF-PsychEngine-Extra/releases");
+				CoolUtil.browserLoad("https://github.com/TyDevX/Stardust-Engine/releases");
 				FlxG.sound.play(Paths.sound('cancelMenu'));
 				FlxTween.tween(warnText, {alpha: 0}, 1, {
 					onComplete: function (twn:FlxTween) {

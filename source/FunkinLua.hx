@@ -123,8 +123,8 @@ class FunkinLua {
 		set('rating', 0);
 		set('ratingName', '');
 		set('ratingFC', '');
-		set('version', MainMenuState.StardustEngineVersion.trim());
-		set('versionExtra', MainMenuState.StardustEngineVersion.trim());
+		set('version', MainMenuState.stardustEngineVersion.trim());
+		set('versionExtra', MainMenuState.stardustEngineVersion.trim());
 		
 		set('inGameOver', false);
 		set('mustHitSection', false);

@@ -42,10 +42,10 @@ class DiscordClient
 	static function onReady()
 	{
 		DiscordRpc.presence({
-			details: "Menu State.hx",
+			details: "MenuState.hx",
 			state: null,
 			largeImageKey: 'icon',
-			largeImageText: "Bruh Engine Reborn"
+			largeImageText: "Stardust Engine"
 		});
 	}
 
@@ -81,7 +81,7 @@ class DiscordClient
 			details: details,
 			state: state,
 			largeImageKey: 'icon',
-			largeImageText: 'Engine Version: ${MainMenuState.StardustEngineVersion}',
+			largeImageText: 'Engine Version: ${MainMenuState.stardustEngineVersion}',
 			smallImageKey : smallImageKey,
 			// Obtained times are in milliseconds so they are divided so Discord can use it
 			startTimestamp : Std.int(startTimestamp / 1000),
