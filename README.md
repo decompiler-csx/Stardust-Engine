@@ -2,6 +2,8 @@
 
 * The official repo for Bruh Engine Reborn's Revival, which is now known as Stardust Engine!
 
+* Note: I wont be working on this alot because I'm working on FX Engine lol
+
 ## Build Installation Stuff:
 You must have [the most up-to-date version of Haxe](https://haxe.org/download/), seriously, stop using 4.1.5, it misses some stuff.
 
