@@ -25,6 +25,8 @@ same goes for *Lua Scripts*, comment out or delete the line with `LUA_ALLOWED`, 
 
 * TyDev - Programmer
 
+* Starmanpo - Programmer for Psych Extra which I borrowed some code from when it was open source
+
 ## Psych Engine Credits:
 * Shadow Mario - Programmer
 * RiverOaken - Artist
